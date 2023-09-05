@@ -1,10 +1,12 @@
 import { Text, View } from 'react-native'
+import { useGetAllProductsQuery } from '../store/apiSlice'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 
 export const Movies = () => {
-    const movie = useSelector((state: RootState) => state.userList)
+    const { data } = useGetAllProductsQuery({});
+    console.log(data)
     const API_KEY = "56ddfbeb9230b5239162133b477b8b62"
     const BASE_URL = 'https://api.themoviedb.org/3/'
 
@@ -21,5 +23,7 @@ export const Movies = () => {
     //             console.error('Wystąpił błąd:', error);
     //         });
     // }, []);
-    return (<>{movie.loading && <Text>s</Text>}</>)
+
+    // return (<>{movie.loading && <Text>s</Text>}</>)
+    return (<><Text>s</Text></>)
 }

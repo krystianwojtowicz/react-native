@@ -1,10 +1,11 @@
 import { configureStore, combineReducers, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import movieId from "./apiSlice";
-import userListSlice from "./apiSlice";
+// import movieId from "./apiSlice";
+// import userListSlice from "./apiSlice";
+import { productsApi }from "./apiSlice";
 
 const rootReducer = combineReducers({
   // movieId: movieId
-  userList: userListSlice
+  userList: productsApi.reducer
 })
 export const store = configureStore({
   reducer: 
