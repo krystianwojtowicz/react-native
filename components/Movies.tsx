@@ -8,6 +8,7 @@ export const Movies = () => {
     const { data } = useGetAllProductsQuery({});
     console.log(data)
     const API_KEY = "56ddfbeb9230b5239162133b477b8b62"
+    const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmRkZmJlYjkyMzBiNTIzOTE2MjEzM2I0NzdiOGI2MiIsInN1YiI6IjY0ZWFmMjAwYzNjODkxMDBjNjgzN2ZkNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4d5pCCHGcwR_7arIqoD9AaFplENGtwYJ4GV2ZkHpsf8"
     const BASE_URL = 'https://api.themoviedb.org/3/'
 
     // useEffect(() => {
