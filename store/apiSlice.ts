@@ -1,17 +1,21 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_KEY = "56ddfbeb9230b5239162133b477b8b62"
+const API_KEY = "56ddfbeb9230b5239162133b477b8b62";
 export const productsApi = createApi({
-    reducerPath: "productsApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),
-    endpoints: (builder) => ({
-        getAllProducts: builder.query({
-            query: (page) => `discover/movie?api_key=${API_KEY}&page=${page}&sort_by=popularity.desc`,
-        })
-    })
-})
+  reducerPath: "productsApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),
+  endpoints: (builder) => ({
+    getAllProducts: builder.query({
+      query: (page) =>
+        `discover/movie?api_key=${API_KEY}&page=${page}&sort_by=popularity.desc`,
+    }),
+    getMovieByTitle: builder.query({
+      query: (title) => `search/movie?api_key=${API_KEY}&query=${title}`,
+    }),
+  }),
+});
 
-export const { useGetAllProductsQuery } = productsApi
+export const { useGetAllProductsQuery, useGetMovieByTitleQuery } = productsApi;
 // import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 // import { RootState } from './store'
 
@@ -48,10 +52,6 @@ export const { useGetAllProductsQuery } = productsApi
 // })
 
 // export default userListSlice.reducer
-
-
-
-
 
 // export default movieIdSlice.reducer
 
