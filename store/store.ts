@@ -1,23 +1,15 @@
-import {
-  configureStore,
-  combineReducers,
-  createSlice,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-// import movieId from "./apiSlice";
-// import userListSlice from "./apiSlice";
-import { productsApi } from "./apiSlice";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import movieId from "./movieIdSlice";
 
-const rootReducer = combineReducers({
-  // movieId: movieId
-  userList: productsApi.reducer,
-});
 export const store = configureStore({
-  reducer: rootReducer,
-  // [productsApi.reducerPath]: productsApi.reducer,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(productsApi.middleware),
+  reducer: {
+    movieId,
+  },
 });
 
-// export type RootState = ReturnType<typeof store.getState>
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

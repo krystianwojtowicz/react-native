@@ -4,22 +4,25 @@ import {
   useGetMovieByTitleQuery,
 } from "../store/apiSlice";
 import { useEffect, useState } from "react";
-import { RootState } from "../store/store";
+import { RootState, useAppDispatch } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
+import { setMovieId } from "../store/movieIdSlice";
 
 export const Movies = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { data } = useGetAllProductsQuery({});
+  // const { data } = useGetAllProductsQuery({});
+  // const { data } = useGetMovieByTitleQuery("Talk to Me");
+  const dispatch = useAppDispatch();
+  const data = useGetMovieByTitleQuery(searchQuery);
   console.log(data);
-  const API_KEY = "56ddfbeb9230b5239162133b477b8b62";
-  const ACCESS_TOKEN =
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmRkZmJlYjkyMzBiNTIzOTE2MjEzM2I0NzdiOGI2MiIsInN1YiI6IjY0ZWFmMjAwYzNjODkxMDBjNjgzN2ZkNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4d5pCCHGcwR_7arIqoD9AaFplENGtwYJ4GV2ZkHpsf8";
   const BASE_URL = "https://api.themoviedb.org/3/";
 
-  //   const handleSearch = () => {
-  //     const dispatch = useDispatch();
-  //     dispatch(useGetMovieByTitleQuery(searchQuery));
-  //   };
+  const handleSearch = () => {
+    // dispatch(setMovieId(movie.id))
+    // const data = (useGetMovieByTitleQuery(searchQuery));
+    const data = useGetMovieByTitleQuery(searchQuery);
+    console.log(data);
+  };
 
   // useEffect(() => {
   //     // Pobranie listy filmów z API
@@ -44,7 +47,13 @@ export const Movies = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        {/* <button onClick={handleSearch}>Szukaj</button> */}
+        <button onClick={handleSearch}>Szukaj</button>
+      </View>
+      <View>
+        {data?.data?.results.length > 0 &&
+          data.data.results.map((movie: any) => (
+            <Text key={movie.id}>{movie.original_title}</Text>
+          ))}
       </View>
     </>
   );

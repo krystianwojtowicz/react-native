@@ -1,11 +1,11 @@
+import { API_KEY } from "@env";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_KEY = "56ddfbeb9230b5239162133b477b8b62";
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),
   endpoints: (builder) => ({
-    getAllProducts: builder.query({
+    getAllProducts: builder.query<FetchedMovieType[], number>({
       query: (page) =>
         `discover/movie?api_key=${API_KEY}&page=${page}&sort_by=popularity.desc`,
     }),
