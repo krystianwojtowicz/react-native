@@ -2,9 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 const HomeScreen2: React.FC = () => (
   <View style={styles.container}>
-    <Text style={styles.text}>
-      Witaj na prostym ekranie2 w React Native z TypeScript!
-    </Text>
+    <Text style={styles.text}>Just to do navigation</Text>
   </View>
 );
 
